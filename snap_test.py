@@ -52,3 +52,21 @@ SubG = GetSubGraph(G6, TIntV.GetV(0,1,2,3,4))
 Core3 = GetKCore(G6, 3)
 # 出次数10入次数5のノードを削除する
 DelDegKNodes(G6, 10, 5)
+
+# 1000ノード、出次数3のPreferential Attachment graphの生成
+  G8 = GenPrefAttach(1000, 3)
+  # 整数のペアのベクトル（size, count）
+  CntV = TIntPrV()
+  # 接続したコンポーネントの分布を得る(component size, count)
+  GetWccSzCnt(G8, CntV)
+  # 次数分布のペアを得る (degree, count)
+  GetOutDegCnt(G8, CntV)
+  # 浮動小数点数を得る
+  EigV = TFltV()
+  # グラフの隣接行列の第一固有ベクトル
+  GetEigVec(G8, EigV)
+  # G8の直径を得る
+  GetBfsFullDiam(G8, 100)
+  # G8のクラスタリング相関を得て、G8におけるトライアド（3者関係）の数を数える
+  GetTriads(G8)
+  GetClustCf(G8)
