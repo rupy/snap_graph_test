@@ -41,3 +41,14 @@ G4 = TNGraph.Load(FIn)
 SaveEdgeList(G4, "test.txt", "Save as tab-separated list of edges")
 G5 = LoadEdgeList(PNGraph, "test.txt", 0, 1)
 
+# Forest Fire modelを用いたネットワーク
+G6 = GenForestFire(1000, 0.35, 0.35)
+# 無向グラフに変換
+G7 = ConvertGraph(PUNGraph,G6)
+WccG = GetMxWcc(G6)
+# {0,1,2,3,4,5}に由来するサブグラフを得る
+SubG = GetSubGraph(G6, TIntV.GetV(0,1,2,3,4))
+# 3-coreを得る
+Core3 = GetKCore(G6, 3)
+# 出次数10入次数5のノードを削除する
+DelDegKNodes(G6, 10, 5)
